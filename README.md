@@ -4,14 +4,15 @@ CI Pipeline Demo (Flask + GitHub Actions)
 A small Flask service with a four-stage GitHub Actions pipeline: lint, test, build and package.
 
 
-The app
+## The app
 | Endpoint   |     What it does |
 |---|---|
 |  `GET /`   |     Returns a greeting |
 | `GET /health` |  Returns {"status": "ok"} |
 | `GET /add?a=2&b=3` |   Returns the sum, or a 400 error if the input is not numbers |
 
-Run it locally
+## Run it locally
+
 You need Python 3.12.
 ```bash
 python3 -m venv .venv
@@ -29,7 +30,7 @@ docker build -t ci-demo .
 docker run -p 5000:5000 ci-demo
 ```
 
-How the pipeline works ( .github/workflows/ci.yml )
+## How the pipeline works ( .github/workflows/ci.yml )
 
 - **When it runs:** on every pull request to main , every push to main , and tags starting
 with v .
@@ -39,7 +40,7 @@ package only runs on pushes, never on pull requests.
 pip's download cache is stored between runs, and a newer commit on the same branch cancels the older run.
 The workflow only has contents: read permission, and no secrets are in the repository.
 
-Evidence
+## Evidence
 
 Green run, all four jobs passing: https://github.com/Oreoluwa26/ci￾demo/actions/runs/41188476228
 Failing PR 1, lint error: https://github.com/Oreoluwa26/ci-demo/pull/1
@@ -48,7 +49,7 @@ Failing PR 3, broken build: https://github.com/Oreoluwa26/ci-demo/pull/3
 Cold run (no cache): https://github.com/Oreoluwa26/ci￾demo/actions/runs/41188476228/attempts/1 took 48 seconds
 Warm run (same commit, cache hit): https://github.com/Oreoluwa26/ci￾demo/actions/runs/41188476228/attempts/2 took 1 minute 6 seconds
 
-Pipeline design
+## Pipeline design
 
 **1. Stage order**
 
@@ -113,7 +114,7 @@ behave differently from what the tests used. Installing from the pinned file fix
 **Push the image to a registry (GitHub Container Registry) when a v tag is pushed.**
 At the moment the image is built but never published, so nothing can be deployed from it.
 
-**Assumptions**
+## Assumptions
 
 I chose Python 3.12 and Flask.
 The image is built but not pushed to a registry, so no registry password is needed.
