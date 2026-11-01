@@ -1,10 +1,15 @@
-CI Pipeline Demo (Flask + GitHub Actions)
+##CI Pipeline Demo (Flask + GitHub Actions)
+
+
 A small Flask service with a four-stage GitHub Actions pipeline: lint, test, build and package.
-The app
-Endpoint           What it does
-GET /              Returns a greeting
-GET /health        Returns {"status": "ok"}
-GET /add?a=2&b=3   Returns the sum, or a 400 error if the input is not numbers
+
+
+##The app
+| Endpoint   |     What it does |
+|---|---|
+|  `GET /`   |     Returns a greeting |
+| `GET /health` |  Returns {"status": "ok"} |
+| `GET /add?a=2&b=3` |   Returns the sum, or a 400 error if the input is not numbers |
 
 Run it locally
 You need Python 3.12.
