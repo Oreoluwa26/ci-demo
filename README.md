@@ -1,10 +1,10 @@
-##CI Pipeline Demo (Flask + GitHub Actions)
+CI Pipeline Demo (Flask + GitHub Actions)
 
 
 A small Flask service with a four-stage GitHub Actions pipeline: lint, test, build and package.
 
 
-##The app
+The app
 | Endpoint   |     What it does |
 |---|---|
 |  `GET /`   |     Returns a greeting |
@@ -13,6 +13,7 @@ A small Flask service with a four-stage GitHub Actions pipeline: lint, test, bui
 
 Run it locally
 You need Python 3.12.
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -20,11 +21,13 @@ flask --app ciapp.app run      # run the app on http://127.0.0.1:5000
 flake8 .                       # lint (settings are in .flake8)
 python -m pytest -v            # run the 5 unit tests
 python -m build --wheel        # build: creates dist/ciapp-1.0.0-py3-none-any.wh
-
+```
 
 To package it in Docker (the wheel must be in dist/ first):
+```bash
 docker build -t ci-demo .
 docker run -p 5000:5000 ci-demo
+```
 
 How the pipeline works ( .github/workflows/ci.yml )
 When it runs: on every pull request to main , every push to main , and tags starting
